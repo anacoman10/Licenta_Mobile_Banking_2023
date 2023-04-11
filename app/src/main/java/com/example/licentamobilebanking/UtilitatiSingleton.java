@@ -1,6 +1,5 @@
 package com.example.licentamobilebanking;
 
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -19,14 +18,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class UtilitatiSingleton {
     public static boolean esteBlocat=false;
     public static String phoneNumber;
-    public static User user;
-
-    public static Card card;
 
     public static FirebaseFirestore database=FirebaseFirestore.getInstance();
     public static List<Deposit> depositList=new ArrayList<Deposit>()
@@ -66,7 +62,8 @@ public class UtilitatiSingleton {
             )
     );
 
-
+    public static Card card=cardList.get(0);
+    public static User user=userList.get(0);
 
     public static List<Transaction> transactionList2=new ArrayList<Transaction>() {{
         add(new Transaction(-321.86f, "CARREFOUR ROMANIA SA ", "CARREFOUR ROMANIA SA ", "RON", "01/06/2022", "Alimentație", "procesata", false,"RO06PORL5856834318442176"));

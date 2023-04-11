@@ -198,4 +198,3 @@ public class AddDepositDialog extends DialogFragment {
         return true;
     }
 }
-

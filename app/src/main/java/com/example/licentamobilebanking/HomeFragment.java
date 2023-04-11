@@ -83,16 +83,7 @@ public class HomeFragment extends Fragment {
     public static HashMap<String, Provider> providersList = new HashMap<>(); //toti providerii
     public static HashMap<String, User> userList = new HashMap<>(); //toti userii
     public static HashMap<String,Card> cardList= new HashMap<String,Card>();
-    {
-        Card card = new Card(1000.0, "RON", "2024-12-31", "2021-01-01", "RO12INGB0000999900000001", "1234567890123456", "John Doe", "Debit", 123);
-        cardList.put(card.getNumber(), card);
 
-        Card card2 = new Card(5000.0, "EUR", "2023-12-31", "2020-01-01", "RO12INGB0000999900000002", "2345678901234567", "Jane Doe", "Credit", 456);
-        cardList.put(card2.getNumber(), card2);
-
-        Card card3 = new Card(2500.0, "USD", "2022-12-31", "2019-01-01", "RO12INGB0000999900000003", "3456789012345678", "Bob Smith", "Debit", 789);
-        cardList.put(card3.getNumber(), card3);
-    }
     public static TextView myBalanceHome;
     public static TextView depozite;
 
@@ -163,7 +154,6 @@ public class HomeFragment extends Fragment {
         showInformationsDialog(view);
 
 
-
         //buton adauga depozit care deschide un custom dialog cu formularul de completat
         ImageButton addDeposit = view.findViewById(R.id.addDeposit);
         addDeposit.setOnClickListener(new View.OnClickListener() {
@@ -226,38 +216,43 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void showWithdrawals(@NonNull View view) {
-        dialog2 = new Dialog(getContext());
-        dialog2.setContentView(R.layout.withdrawals_dialog);
-        dialog2.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
-        dialog2.setCancelable(true);
-        dialog2.getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
 
-        Button closeBtn = dialog2.findViewById(R.id.btn_close);
+    private Dialog createWithdrawalDialog(Context context) {
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.withdrawals_dialog);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
+        dialog.setCancelable(true);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
+
+        Button closeBtn = dialog.findViewById(R.id.btn_close);
 
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                dialog2.dismiss();
+                dialog.dismiss();
             }
         });
 
+        return dialog;
+    }
+    private void setupListView(Dialog dialog, List<Withdrawal> withdrawalList) {
+        WithdrawalAdapter adapter = new WithdrawalAdapter(dialog.getContext(),
+                R.layout.withdrawldesign, withdrawalList, getLayoutInflater());
 
-        TextView tv_cardNumber = view.findViewById(R.id.tv_card_number);
-        tv_cardNumber.setOnClickListener(new View.OnClickListener() {
+        ListView listView = dialog.findViewById(R.id.lv_withdrawal);
+        listView.setAdapter(adapter);
+    }
+    private void showWithdrawals(@NonNull View view) {
+        Dialog dialog = createWithdrawalDialog(getContext());
+
+        TextView tvCardNumber = view.findViewById(R.id.tv_card_number);
+        Withdrawal withdrawal = UtilitatiSingleton.withdrawalList.get(0);
+
+        tvCardNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                WithdrawalAdapter adapter = new WithdrawalAdapter(dialog2.getContext(),
-                        R.layout.withdrawldesign, UtilitatiSingleton.withdrawalList, getLayoutInflater());
-
-                ListView listView = dialog2.findViewById(R.id.lv_withdrawal);
-                listView.setAdapter(adapter);
-
-                dialog2.show();
-
-
+                setupListView(dialog, Collections.singletonList(withdrawal));
+                dialog.show();
             }
         });
     }
@@ -302,12 +297,14 @@ public class HomeFragment extends Fragment {
         });
 
         View cardview = view.findViewById(R.id.cardview);
+        User user1=UtilitatiSingleton.userList.get(0);
+        Card card1=UtilitatiSingleton.cardList.get(0);
         cardview.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
 
-                tvName.setText(" " + UtilitatiSingleton.user.getLastName() + " " + UtilitatiSingleton.user.getFirstName());
-                tvIban.setText(" " + UtilitatiSingleton.card.getIBAN());
+                tvName.setText(" " + user1.getLastName() + " " + user1.getFirstName());
+                tvIban.setText(" " + card1.getIBAN());
                 tvCurrency.setText(" RON");
                 tvBank.setText(" Gamma");
 
@@ -347,18 +344,20 @@ public class HomeFragment extends Fragment {
         if (!areDetailsShown) {
             areDetailsShown = true;
 
+            int cardIndex=0;
+            Card card = UtilitatiSingleton.cardList.get(cardIndex);
             TextView cardNumber = view.findViewById(R.id.tv_card_number);
-            cardNumber.setText(UtilitatiSingleton.card.getNumber());
+            cardNumber.setText(card.getNumber());
 
             TextView cvv = view.findViewById(R.id.tv_cvv);
-            String cvv_string = String.valueOf(UtilitatiSingleton.card.getCVV());
+            String cvv_string = String.valueOf(card.getCVV());
             cvv.setText(cvv_string);
 
         } else if (areDetailsShown) {
             areDetailsShown = false;
 
             TextView cardNumber = view.findViewById(R.id.tv_card_number);
-            String text = UtilitatiSingleton.card.getNumber().substring(UtilitatiSingleton.card.getNumber().length() - 4);
+            String text = card.getNumber().substring(card.getNumber().length() - 4);
             String message = "****  ****  ****  " + text;
             cardNumber.setText(message);
 
@@ -443,7 +442,7 @@ public class HomeFragment extends Fragment {
         getDeposits();
         getTransactions();
         getProviders();
-        findCardType();
+        //findCardType();
 
     }
 
@@ -464,42 +463,42 @@ public class HomeFragment extends Fragment {
     }
 
 
-    private void findCardType() {
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-
-                database.document("CardTypes/" + card.getType())
-                        .get()
-                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                            @Override
-                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                cardType = documentSnapshot.toObject(CardType.class);
-                                //Toast.makeText(getContext(), cardType.toString(), Toast.LENGTH_LONG).show();
-
-                                if (cardType.getIsMastercard()) {
-                                    View cardImage = getView().findViewById(R.id.cardview);
-                                       cardImage.setBackgroundResource(R.drawable.mastercard);
-                                }
-
-                                if ("Credit".equals(cardType.getType())) {
-                                    ConstraintLayout deposits = getView().findViewById(R.id.deposits_layout);
-                                    deposits.setVisibility(View.GONE);
-                                }
-                            }
-                        });
-
-                new Handler(getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-
-                    }
-                });
-            }
-        };
-        thread.start();
-
-    }
+//    private void findCardType() {
+//        Thread thread = new Thread() {
+//            @Override
+//            public void run() {
+//
+//                database.document("CardTypes/"+UtilitatiSingleton.card.getType())
+//                        .get()
+//                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                            @Override
+//                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                                cardType = documentSnapshot.toObject(CardType.class);
+//                                //Toast.makeText(getContext(), cardType.toString(), Toast.LENGTH_LONG).show();
+//
+//                                if (cardType.getIsMastercard()) {
+//                                    View cardImage = getView().findViewById(R.id.cardview);
+//                                    cardImage.setBackgroundResource(R.drawable.mastercard);
+//                                }
+//
+//                                if ("Credit".equals(cardType.getType())) {
+//                                    ConstraintLayout deposits = getView().findViewById(R.id.deposits_layout);
+//                                    deposits.setVisibility(View.GONE);
+//                                }
+//                            }
+//                        });
+//
+//                new Handler(getMainLooper()).post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                    }
+//                });
+//            }
+//        };
+//        thread.start();
+//
+//    }
 
     private void getWithdrawals() {
 
