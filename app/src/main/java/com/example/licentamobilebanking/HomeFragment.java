@@ -1,28 +1,18 @@
 package com.example.licentamobilebanking;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -30,14 +20,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
-
-import com.example.licentamobilebanking.R;
-import com.example.licentamobilebanking.User;
-import com.example.licentamobilebanking.UtilitatiSingleton;
 import com.example.licentamobilebanking.classes.DepositAdapter;
 import com.example.licentamobilebanking.classes.PinView;
 import com.example.licentamobilebanking.classes.Provider;
@@ -49,27 +33,17 @@ import com.example.licentamobilebanking.classes.cards.Withdrawal;
 import com.example.licentamobilebanking.classes.cards.WithdrawalAdapter;
 import com.example.licentamobilebanking.customDialogs.AddDepositDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-
-import static android.os.Looper.getMainLooper;
 
 public class HomeFragment extends Fragment {
 
@@ -190,9 +164,11 @@ public class HomeFragment extends Fragment {
         swBlocat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (!UtilitatiSingleton.card.isBlocat() == b) {
-                    UtilitatiSingleton.card.setBlocat(b);
-                    database.collection("Cards").document(UtilitatiSingleton.user.getIDCard()).update("Blocat", b);
+                boolean isBlocat=false;
+                if (!isBlocat == b) {
+                    Card card1=UtilitatiSingleton.cardList.get(0);
+                    card1.setBlocat(b);
+                    //database.collection("Cards").document(UtilitatiSingleton.user.getIDCard()).update("Blocat", b);
                 }
                 if (b) {
                     if (areDetailsShown) {
@@ -204,6 +180,16 @@ public class HomeFragment extends Fragment {
                     showDetailsButton.setImageResource(R.drawable.iconeye);
                     showDetailsButton.setEnabled(true);
                 }
+            }
+        });
+
+        //afiseaza si ascunde depozitele la click pe sagetica
+        ImageButton arrowBtn = view.findViewById(R.id.arrow);
+        arrowBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showDeposits(view, listView);
             }
         });
 
@@ -306,7 +292,7 @@ public class HomeFragment extends Fragment {
                 tvName.setText(" " + user1.getLastName() + " " + user1.getFirstName());
                 tvIban.setText(" " + card1.getIBAN());
                 tvCurrency.setText(" RON");
-                tvBank.setText(" Gamma");
+                tvBank.setText(" NeoBank");
 
                 dialog1.show();
                 return true;
@@ -388,16 +374,17 @@ public class HomeFragment extends Fragment {
 
 
     private void getTransactions() {
-    //UtilitatiSingleton.fire();
+        //UtilitatiSingleton.fire();
 
         database.collection("Cards/" + UtilitatiSingleton.user.getIDCard() + "/Transactions")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        UtilitatiSingleton.transactionList2.clear();
+                       // UtilitatiSingleton.transactionList2.clear();
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             Transaction transaction = document.toObject(Transaction.class);
+                            UtilitatiSingleton.transactionList2 = new ArrayList<>();
                             UtilitatiSingleton.transactionList2.add(transaction);
                         }
                         Collections.sort(UtilitatiSingleton.transactionList2, Transaction.esteCronologic);

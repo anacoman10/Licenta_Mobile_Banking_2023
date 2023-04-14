@@ -64,6 +64,10 @@ public class ecran_principal extends AppCompatActivity {
                            selectedFragment = new MapsFragment();
                             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                             break;
+                        case R.id.bottom_transactions:
+                            selectedFragment = new TransactionsFragment();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                            break;
 //                        case R.id.bottom_pay:
 //                            if (!UtilitatiSingleton.card.isBlocat()) {
 //                                selectedFragment = new PaymentsFragment();
