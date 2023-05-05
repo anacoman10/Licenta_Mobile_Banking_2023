@@ -122,7 +122,7 @@ public class HomeFragment extends Fragment {
         });
 
         //Custom dialog cu withdrawals la atm la short click pe card
-        //showWithdrawals(view);
+        showWithdrawals(view);
 
         //Custom dialog cu card informations la long click pe card
         showInformationsDialog(view);
@@ -232,12 +232,14 @@ public class HomeFragment extends Fragment {
         Dialog dialog = createWithdrawalDialog(getContext());
 
         TextView tvCardNumber = view.findViewById(R.id.tv_card_number);
-       // Withdrawal withdrawal = UtilitatiSingleton.withdrawalList.get(0);
+         Withdrawal withdrawal = UtilitatiSingleton.withdrawalList.get(0);
+        //Withdrawal withdrawal1 = UtilitatiSingleton.withdrawalList.get(1);
 
         tvCardNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // setupListView(dialog, Collections.singletonList(withdrawal));
+                setupListView(dialog, Collections.singletonList(withdrawal));
+                //setupListView(dialog, Collections.singletonList(withdrawal1));
                 dialog.show();
             }
         });
@@ -289,7 +291,7 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onLongClick(View v) {
 
-                tvName.setText(" " + user1.getLastName() + " " + user1.getFirstName());
+                //tvName.setText(" " + user1.getLastName() + " " + user1.getFirstName());
                 tvIban.setText(" " + card1.getIBAN());
                 tvCurrency.setText(" RON");
                 tvBank.setText(" NeoBank");
@@ -376,7 +378,7 @@ public class HomeFragment extends Fragment {
     private void getTransactions() {
         //UtilitatiSingleton.fire();
 
-        database.collection("Cards/" + UtilitatiSingleton.user.getIDCard() + "/Transactions")
+        database.collection("Cards/" + "1234" + "/Transactions")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -429,9 +431,7 @@ public class HomeFragment extends Fragment {
         getDeposits();
         getTransactions();
         getProviders();
-        //findCardType();
-
-    }
+}
 
     private void getProviders() {
 
@@ -449,43 +449,6 @@ public class HomeFragment extends Fragment {
                 });
     }
 
-
-//    private void findCardType() {
-//        Thread thread = new Thread() {
-//            @Override
-//            public void run() {
-//
-//                database.document("CardTypes/"+UtilitatiSingleton.card.getType())
-//                        .get()
-//                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                            @Override
-//                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                                cardType = documentSnapshot.toObject(CardType.class);
-//                                //Toast.makeText(getContext(), cardType.toString(), Toast.LENGTH_LONG).show();
-//
-//                                if (cardType.getIsMastercard()) {
-//                                    View cardImage = getView().findViewById(R.id.cardview);
-//                                    cardImage.setBackgroundResource(R.drawable.mastercard);
-//                                }
-//
-//                                if ("Credit".equals(cardType.getType())) {
-//                                    ConstraintLayout deposits = getView().findViewById(R.id.deposits_layout);
-//                                    deposits.setVisibility(View.GONE);
-//                                }
-//                            }
-//                        });
-//
-//                new Handler(getMainLooper()).post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//
-//                    }
-//                });
-//            }
-//        };
-//        thread.start();
-//
-//    }
 
     private void getWithdrawals() {
 
@@ -539,28 +502,4 @@ public class HomeFragment extends Fragment {
         balance.setText(balanceText);
     }
 
-
-
-
-//    private void initialAnimations() {
-//        View view = this.getView();
-//        ImageView background;
-//        ImageView cardIcon;
-//        LinearLayout titleLayout;
-//        Animation fromBottomAnimation;
-//        ConstraintLayout homeInfo;
-//
-//        background= view.findViewById(R.id.background);
-//        cardIcon= view.findViewById(R.id.card_icon);
-//        titleLayout= view.findViewById(R.id.balance_layout_switch);
-//        homeInfo=view.findViewById(R.id.home_info);
-//
-//        fromBottomAnimation= AnimationUtils.loadAnimation(getContext(),R.anim.slide_from_bottom);
-//
-//        background.animate().translationY(-1000).setDuration(800).setStartDelay(100);
-//        cardIcon.animate().translationX(-1100).setDuration(800).setStartDelay(600);
-//
-//        titleLayout.startAnimation(fromBottomAnimation);
-//        homeInfo.startAnimation(fromBottomAnimation);
-//    }
 }

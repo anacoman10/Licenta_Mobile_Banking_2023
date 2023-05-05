@@ -48,7 +48,7 @@
             android:layout_width="63dp"
             android:layout_height="60dp"
             android:layout_marginTop="12dp"
-            android:background="@drawable/userprofile"
+            android:src="@drawable/round"
             app:layout_constraintEnd_toEndOf="@+id/cardview"
             app:layout_constraintHorizontal_bias="0.057"
             app:layout_constraintStart_toStartOf="@+id/cardview"

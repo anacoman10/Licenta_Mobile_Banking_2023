@@ -37,16 +37,12 @@ public class AccountAdapter extends ArrayAdapter<Card> {
         TextView tvNume=view.findViewById(R.id.tvNumeDepozit);
         TextView tvSuma=view.findViewById(R.id.tvSumaDepozit);
         TextView tvIBAN=view.findViewById(R.id.tvContDepozit);
-        if(position==0){
+        if(position==0) {
             tvNume.setText("Account");
-            ViewGroup vg= (ViewGroup) tvSuma.getParent();
+            ViewGroup vg = (ViewGroup) tvSuma.getParent();
             vg.removeView(tvSuma);
-            ViewGroup vg2= (ViewGroup) tvIBAN.getParent();
+            ViewGroup vg2 = (ViewGroup) tvIBAN.getParent();
             vg2.removeView(tvIBAN);
-        }else{
-//            tvNume.setText(UtilitatiSingleton.user.getFirstName()+" "+UtilitatiSingleton.user.getLastName());
-            tvSuma.setText(depositList.get(position).getBalance()+" RON");
-            tvIBAN.setText(depositList.get(position).getIBAN()+"");
         }
         return view;
     }

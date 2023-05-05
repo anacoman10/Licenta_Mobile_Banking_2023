@@ -48,8 +48,8 @@ public class UtilitatiSingleton {
     {
         {
         put("u1", new User("Str. Principala","01/25","4743763261","coamngejd@gmail.com","COMAN","1234","ANA","078364732"));
-        put("u2", new User("Str. Principala","01/25","4743763261","coamngejd@gmail.com","COMAN","1234","ANA","078364732"));
-        put("u3", new User("Str. Principala","01/25","4743763261","coamngejd@gmail.com","ILIE","1234","ANA","078364732"));
+        put("u2", new User("Str. Principala","01/25","4743763261","coamngejd@gmail.com","COMAN","3723","MIHAELA","078364732"));
+        put("u3", new User("Str. Principala","01/25","4743763261","coamngejd@gmail.com","ILIE","4643","ANA","078364732"));
         }
 
     };
