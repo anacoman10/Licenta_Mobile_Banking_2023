@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.licentamobilebanking.classes.cards.Transaction;
+import com.example.licentamobilebanking.customDialogs.ExtrasDeContDialog;
 import com.google.android.material.chip.Chip;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -94,7 +95,7 @@ public class TransactionsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ExtrasDeContDialog extrasDeContDialog=new ExtrasDeContDialog();
-               // extrasDeContDialog.show(getFragmentManager(),"ExtrasDeContDialog");
+                extrasDeContDialog.show(getFragmentManager(),"ExtrasDeContDialog");
             }
         });
 

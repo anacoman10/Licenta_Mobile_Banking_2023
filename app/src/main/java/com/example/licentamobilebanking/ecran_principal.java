@@ -26,7 +26,7 @@ public class ecran_principal extends AppCompatActivity {
         setContentView(R.layout.activity_ecran_principal);
 
          bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnItemSelectedListener(navListener);
+                bottomNavigationView.setOnItemSelectedListener(navListener);
 
         firebaseAuth = FirebaseAuth.getInstance();
         //checkUserStatus();
@@ -66,6 +66,14 @@ public class ecran_principal extends AppCompatActivity {
                             break;
                         case R.id.bottom_transactions:
                             selectedFragment = new TransactionsFragment();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                            break;
+                        case R.id.bottom_pay:
+                            selectedFragment = new PaymentsFragment();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                            break;
+                        case R.id.bottom_reports:
+                            selectedFragment = new ReportsFragment();
                             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                             break;
 //                        case R.id.bottom_pay:

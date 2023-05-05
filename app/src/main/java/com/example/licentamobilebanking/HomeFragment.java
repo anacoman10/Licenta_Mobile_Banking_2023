@@ -122,7 +122,7 @@ public class HomeFragment extends Fragment {
         });
 
         //Custom dialog cu withdrawals la atm la short click pe card
-        showWithdrawals(view);
+        //showWithdrawals(view);
 
         //Custom dialog cu card informations la long click pe card
         showInformationsDialog(view);
@@ -232,12 +232,12 @@ public class HomeFragment extends Fragment {
         Dialog dialog = createWithdrawalDialog(getContext());
 
         TextView tvCardNumber = view.findViewById(R.id.tv_card_number);
-        Withdrawal withdrawal = UtilitatiSingleton.withdrawalList.get(0);
+       // Withdrawal withdrawal = UtilitatiSingleton.withdrawalList.get(0);
 
         tvCardNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setupListView(dialog, Collections.singletonList(withdrawal));
+               // setupListView(dialog, Collections.singletonList(withdrawal));
                 dialog.show();
             }
         });

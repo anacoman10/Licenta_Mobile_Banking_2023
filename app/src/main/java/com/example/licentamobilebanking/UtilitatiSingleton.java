@@ -65,60 +65,61 @@ public class UtilitatiSingleton {
     public static Card card=cardList.get(0);
     public static User user=userList.get(0);
 
-//    public static List<Transaction> transactionList2=new ArrayList<Transaction>() {{
-//        add(new Transaction(-321.86f, "CARREFOUR ROMANIA SA ", "CARREFOUR ROMANIA SA ", "RON", "01/06/2022", "Alimentație", "procesata", false,"RO06PORL5856834318442176"));
-//
-//        add(new Transaction(180.35f, "binance.com", "binance.com", "RON", "01/06/2022", "Invetiții", "procesata", false,"RO06PORL5856834318442176"));
-//
-//        add(new Transaction(8000f, "CEGEKA ROMANIA SRL", "CEGEKA ROMANIA SRL", "RON", "01/07/2022", "General", "procesata", false,"RO06PORL5856834318442176"));
-//
-//        add(new Transaction(489.65f, "Trading212", "Trading212", "RON", "03/07/2022", "Investiții", "procesata", false,"RO06PORL5856834318442176"));
-//
-//        add(new Transaction(350f, "Tradeville", "Tradeville", "RON", "01/07/2022", "Investiții", "procesata", false,"RO06PORL5856834318442176"));
-//        add(new Transaction(-101.00f, "PayU*vodafone.ro", "02/07/2022", "Utilități",  false));
-//        add(new Transaction(-110.80f, "ENEL ENERGIE MUNTENIA", "02/04/2022", "Utilități",  true));
-//        add(new Transaction(-83.67f, "MEGACONSTRUCT SA", "02/04/2022", "Utilități",  true));
-//        add(new Transaction(-20.00f, "SUPERCOM SA", "02/04/2022", "Utilități",  true));
-//        add(new Transaction(-43.59f, "APA NOVA SA", "02/04/2022", "Cumpărături",  true));
-//        add(new Transaction(-369.95f, "OMV 1779", "02/04/2022", "Transport",  false));
-//        add(new Transaction(-177.00f, "Parfumerie Douglas", "02/04/2022", "Cumpărături",  false));
-//        add(new Transaction(-129.90f, "ZARA 1428PARKLAKE C1", "02/04/2022", "Cumpărături",  false));
-//        add(new Transaction(-130.00f, "Trattoria Monza", "02/04/2022", "Restaurant",  false));
-//        add(new Transaction(-80.00f, "IANCU CRISTINA", "02/04/2022", "Transferuri",  false));
-//        add(new Transaction(-92.90f, "FARM TEI", "02/04/2022", "General",  false));
-//        add(new Transaction(-17.48f, "GHINDOC IMPEX", "02/04/2022", "Alimentație",  false));
-//        add(new Transaction(-20.00f, "KFC MEGA MALL", "02/04/2022", "Alimentație",  false));
-//        add(new Transaction(-24.50f, "ALSIMA FOOD", "02/04/2022", "Alimentație",  false));
-//        add(new Transaction(-90.00f, "TONE PAUL", "02/04/2022", "Transferuri",  false));
-//        add(new Transaction(-320.01f, "MOL AFUMATI", "02/04/2022", "Transport",  false));
-//        add(new Transaction(-31.50f, "KFC KIOSK COLENTINA", "02/04/2022", "Alimentație",  false));
-//        add(new Transaction(-59.60f, "PENA COM", "02/04/2022", "Alimentație",  false));
-//        add(new Transaction(-100.00f, "MARIN DANIEL-CONSTANTIN", "02/04/2022", "Transferuri",  false));
-//        add(new Transaction(-53.30f, "FARMACIA FARMASANO", "02/04/2022", "General",  false));
-//        add(new Transaction(-73.12f, "FARMACIA TEI BV154 C27", "02/04/2022", "General",  false));
-//        add(new Transaction(-18.40f, "SPRING FARM SRL", "02/04/2022", "General",  false));
-//        add(new Transaction(-27.95f, "SMODIN.IO – TEXT TOOLS", "02/04/2022", "General",  false));
-//        add(new Transaction(-250.00f, "TSV Afumati", "02/04/2022", "Transport",  false));
-//        add(new Transaction(-236.91f, "KAUFLAND ROMANIA SA", "02/04/2022", "Transport",  false));
-//        add(new Transaction(-142.97f, "Teatrul National Bucuresti", "02/04/2022", "General",  false));
-//        add(new Transaction(-36.33f, "MEGAIMAGE 0109 AFUMATI", "02/04/2022", "Alimentație",  false));
-//        add(new Transaction(-33.00f, "PREMIER RESTAURANTS RO", "02/04/2022", "Alimentație",  false));
-//        add(new Transaction(-32.50f, "Cinema City Park Lake", "02/04/2022", "Cumpărături",  false));
-//        add(new Transaction(-42.50f, "EDITURA STYLISHED", "02/04/2022", "Cumpărături",  false));
-//        add(new Transaction(-192.50f, "World Class Veranda Mall", "02/04/2022", "General",  false));
-//        add(new Transaction(-210.50f, "H M UNIC IMPORT SRL", "02/04/2022", "Cumpărături",  false));
-//        add(new Transaction(-130.07f, "PayU/*expertbeauty.ro", "02/04/2022", "Cumpărături",  false));
-//        add(new Transaction(-45.99f, "PENTI MEGA MALL", "02/04/2022", "Cumpărături",  false));
-//        add(new Transaction(-142.00f, "Afumati – Partener Mol", "02/04/2022", "Transport",  false));
-//        add(new Transaction(-592.32f, "Booking.com", "02/04/2022", "General",  false));
-//    }};
 
-    public static List<Transaction> transactionList2 = Arrays.asList(
-            new Transaction(-321.86f, "CARREFOUR ROMANIA SA ", "CARREFOUR ROMANIA SA ", "RON", "01/06/2022", "Alimentație", "procesata", false,"RO06PORL5856834318442176"),
-            new Transaction(180.35f, "binance.com", "binance.com", "RON", "01/06/2022", "Invetiții", "procesata", false,"RO06PORL5856834318442176"),
-            new Transaction(8000f, "CEGEKA ROMANIA SRL", "CEGEKA ROMANIA SRL", "RON", "01/07/2022", "General", "procesata", false,"RO06PORL5856834318442176"),
-            new Transaction(489.65f, "Trading212", "Trading212", "RON", "03/07/2022", "Investiții", "procesata", false,"RO06PORL5856834318442176")
-    );
+public static List<Transaction> transactionList2=new ArrayList<Transaction>() {{
+    add(new Transaction(-321.86f, "CARREFOUR ROMANIA SA ", "CARREFOUR ROMANIA SA ", "RON", "01/06/2022", "Alimentație", "procesata", false,"RO06PORL5856834318442176"));
+
+    add(new Transaction(180.35f, "binance.com", "binance.com", "RON", "01/06/2022", "Invetiții", "procesata", false,"RO06PORL5856834318442176"));
+
+    add(new Transaction(8000f, "CEGEKA ROMANIA SRL", "CEGEKA ROMANIA SRL", "RON", "01/07/2022", "General", "procesata", false,"RO06PORL5856834318442176"));
+
+    add(new Transaction(489.65f, "Trading212", "Trading212", "RON", "03/07/2022", "Investiții", "procesata", false,"RO06PORL5856834318442176"));
+
+    add(new Transaction(350f, "Tradeville", "Tradeville", "RON", "01/07/2022", "Investiții", "procesata", false,"RO06PORL5856834318442176"));
+    add(new Transaction(-101.00f, "PayU*vodafone.ro", "02/07/2022", "Utilități",  false));
+    add(new Transaction(-110.80f, "ENEL ENERGIE MUNTENIA", "02/04/2022", "Utilități",  true));
+    add(new Transaction(-83.67f, "MEGACONSTRUCT SA", "02/04/2022", "Utilități",  true));
+    add(new Transaction(-20.00f, "SUPERCOM SA", "02/04/2022", "Utilități",  true));
+    add(new Transaction(-43.59f, "APA NOVA SA", "02/04/2022", "Cumpărături",  true));
+    add(new Transaction(-369.95f, "OMV 1779", "02/04/2022", "Transport",  false));
+    add(new Transaction(-177.00f, "Parfumerie Douglas", "02/04/2022", "Cumpărături",  false));
+    add(new Transaction(-129.90f, "ZARA 1428PARKLAKE C1", "02/04/2022", "Cumpărături",  false));
+    add(new Transaction(-130.00f, "Trattoria Monza", "02/04/2022", "Restaurant",  false));
+    add(new Transaction(-80.00f, "IANCU CRISTINA", "02/04/2022", "Transferuri",  false));
+    add(new Transaction(-92.90f, "FARM TEI", "02/04/2022", "General",  false));
+    add(new Transaction(-17.48f, "GHINDOC IMPEX", "02/04/2022", "Alimentație",  false));
+    add(new Transaction(-20.00f, "KFC MEGA MALL", "02/04/2022", "Alimentație",  false));
+    add(new Transaction(-24.50f, "ALSIMA FOOD", "02/04/2022", "Alimentație",  false));
+    add(new Transaction(-90.00f, "TONE PAUL", "02/04/2022", "Transferuri",  false));
+    add(new Transaction(-320.01f, "MOL AFUMATI", "02/04/2022", "Transport",  false));
+    add(new Transaction(-31.50f, "KFC KIOSK COLENTINA", "02/04/2022", "Alimentație",  false));
+    add(new Transaction(-59.60f, "PENA COM", "02/04/2022", "Alimentație",  false));
+    add(new Transaction(-100.00f, "MARIN DANIEL-CONSTANTIN", "02/04/2022", "Transferuri",  false));
+    add(new Transaction(-53.30f, "FARMACIA FARMASANO", "02/04/2022", "General",  false));
+    add(new Transaction(-73.12f, "FARMACIA TEI BV154 C27", "02/04/2022", "General",  false));
+    add(new Transaction(-18.40f, "SPRING FARM SRL", "02/04/2022", "General",  false));
+    add(new Transaction(-27.95f, "SMODIN.IO – TEXT TOOLS", "02/04/2022", "General",  false));
+    add(new Transaction(-250.00f, "TSV Afumati", "02/04/2022", "Transport",  false));
+    add(new Transaction(-236.91f, "KAUFLAND ROMANIA SA", "02/04/2022", "Transport",  false));
+    add(new Transaction(-142.97f, "Teatrul National Bucuresti", "02/04/2022", "General",  false));
+    add(new Transaction(-36.33f, "MEGAIMAGE 0109 AFUMATI", "02/04/2022", "Alimentație",  false));
+    add(new Transaction(-33.00f, "PREMIER RESTAURANTS RO", "02/04/2022", "Alimentație",  false));
+    add(new Transaction(-32.50f, "Cinema City Park Lake", "02/04/2022", "Cumpărături",  false));
+    add(new Transaction(-42.50f, "EDITURA STYLISHED", "02/04/2022", "Cumpărături",  false));
+    add(new Transaction(-192.50f, "World Class Veranda Mall", "02/04/2022", "General",  false));
+    add(new Transaction(-210.50f, "H M UNIC IMPORT SRL", "02/04/2022", "Cumpărături",  false));
+    add(new Transaction(-130.07f, "PayU/*expertbeauty.ro", "02/04/2022", "Cumpărături",  false));
+    add(new Transaction(-45.99f, "PENTI MEGA MALL", "02/04/2022", "Cumpărături",  false));
+    add(new Transaction(-142.00f, "Afumati – Partener Mol", "02/04/2022", "Transport",  false));
+    add(new Transaction(-592.32f, "Booking.com", "02/04/2022", "General",  false));
+}};
+
+//    public static List<Transaction> transactionList2 = Arrays.asList(
+//            new Transaction(-321.86f, "CARREFOUR ROMANIA SA ", "CARREFOUR ROMANIA SA ", "RON", "03/05/2023", "Alimentație", "procesata", false,"RO06PORL5856834318442176"),
+//            new Transaction(180.35f, "binance.com", "binance.com", "RON", "01/06/2022", "Invetiții", "procesata", false,"RO06PORL5856834318442176"),
+//            new Transaction(8000f, "CEGEKA ROMANIA SRL", "CEGEKA ROMANIA SRL", "RON", "01/07/2022", "General", "procesata", false,"RO06PORL5856834318442176"),
+//            new Transaction(489.65f, "Trading212", "Trading212", "RON", "03/05/2023", "Investiții", "procesata", false,"RO06PORL5856834318442176")
+//    );
 
     public static void initializare(){
         database.collection("Users")

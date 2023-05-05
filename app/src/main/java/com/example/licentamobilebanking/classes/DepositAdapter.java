@@ -43,7 +43,6 @@ public class DepositAdapter extends ArrayAdapter<Deposit> {
             TextView deposittimeleft = view.findViewById(R.id.textTimpRamas);
 
 
-
             depositname.setText(deposit.getName());
             depositsum.setText(String.valueOf(deposit.getAmount())+ " RON");
             depositrate.setText("Dobândă: "+String.valueOf(deposit.getInterestRate()));

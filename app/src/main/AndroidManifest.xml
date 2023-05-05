@@ -41,9 +41,10 @@
             android:name=".Splashscreen"
             android:exported="true">
 
+
         </activity>
-<!--        <activity android:name=".MainActivity"/>-->
-<!--        <activity android:name=".otpverification"/>-->
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".otpverification"/>
         <activity android:name=".ecran_principal"
             android:exported="true">
 
